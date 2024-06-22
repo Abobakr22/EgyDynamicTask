@@ -1,0 +1,96 @@
+<h2 style="text-align: center;">{{ isEditMode ? 'تعديل عميل' : 'إضافة عميل جديد' }}</h2>
+
+<form [formGroup]="customerForm" (ngSubmit)="saveCustomer()" class="dialog-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="residence">مكان الإقامة</label>
+      <input type="text" id="residence" formControlName="residence">
+    </div>
+    <div class="form-group">
+      <label for="job">الوظيفة</label>
+      <input type="text" id="job" formControlName="job">
+    </div>
+    <div class="form-group">
+      <label for="customerName">اسم العميل</label>
+      <input type="text" id="customerName" formControlName="customerName" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="description">الوصف</label>
+      <input type="text" id="description" formControlName="description">
+    </div>
+    <div class="form-group">
+      <label for="nationality">الجنسية</label>
+      <input type="text" id="nationality" formControlName="nationality">
+    </div>
+    <div class="form-group">
+      <label for="customerAddress">عنوان العميل</label>
+      <input type="text" id="customerAddress" formControlName="customerAddress">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="customerClassification">تصنيف العميل</label>
+      <input type="text" id="customerClassification" formControlName="customerClassification">
+    </div>
+    <div class="form-group">
+      <label for="customerCode">كود العميل</label>
+      <input type="text" id="customerCode" formControlName="customerCode">
+    </div>
+    <div class="form-group">
+      <label for="customerSource">مصدر العميل</label>
+      <input type="text" id="customerSource" formControlName="customerSource">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="enteredBy">المدخل</label>
+      <input type="text" id="enteredBy" formControlName="enteredBy">
+    </div>
+    <div class="form-group">
+      <label for="lastModifiedBy">آخر تعديل بواسطة</label>
+      <input type="text" id="lastModifiedBy" formControlName="lastModifiedBy">
+    </div>
+    <div class="form-group">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" formControlName="email">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="whatsApp">واتساب</label>
+      <input type="tel" id="whatsApp" formControlName="whatsApp">
+    </div>
+    <div class="form-group">
+      <label for="firstPhone">الهاتف الأول</label>
+      <input type="tel" id="firstPhone" formControlName="firstPhone">
+    </div>
+    <div class="form-group">
+      <label for="secondaryPhone">الهاتف الثاني</label>
+      <input type="tel" id="secondaryPhone" formControlName="secondaryPhone">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="salesmanId">رقم البائع</label>
+      <input type="number" id="salesmanId" formControlName="salesmanId" required>
+    </div>
+    <div class="form-group">
+      <label for="lastModifiedDate">تاريخ آخر تعديل</label>
+      <input type="date" id="lastModifiedDate" formControlName="lastModifiedDate">
+    </div>
+    <div class="form-group">
+      <label for="enteredDate">تاريخ الإدخال</label>
+      <input type="date" id="enteredDate" formControlName="enteredDate">
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!customerForm.valid" class="green-header">{{ isEditMode ? 'تحديث عميل' : 'إنشاء عميل' }}</button>
+  <button type="button" (click)="onCancel()" class="red-header">إلغاء</button>
+</form>

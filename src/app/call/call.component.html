@@ -1,0 +1,106 @@
+<div class="container">
+    <h3>المكالمات</h3>
+    <div>
+      <button mat-button color="primary" (click)="openDialog()" class="blue-header" style="margin-left: 5px;">اضافة مكالمة جديدة</button>
+      <button mat-button color="accent" (click)="reloadTable()" class="blue-header" style="margin-left: 5px;">تحديث الجدول</button>
+      <!-- <button mat-button color="accent" (click)="toggleColumnsDialog()" style="margin-left: 5px;">إظهار/إخفاء الأعمدة</button> -->
+      <button mat-button color="accent" (click)="downloadCSV()" class="blue-header" style="margin-left: 5px;">تنزيل الجدول</button>
+      <input matInput (keyup)="applyFilter($event)" placeholder="ابحث في الجدول"  style="margin-left: 5px;"> 
+    </div>
+  
+        <table mat-table [dataSource]="calls" class="mat-elevation-z8 table table-bordered border-primary">
+
+          <ng-container matColumnDef="callId">
+            <th mat-header-cell *matHeaderCellDef class="blue-header"> رقم </th>
+            <td mat-cell *matCellDef="let call; let i = index"> {{i + 1}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="callTitle">
+            <th mat-header-cell *matHeaderCellDef class="blue-header"> عنوان المكالمة </th>
+            <td mat-cell *matCellDef="let call"> {{call.callTitle}} </td>
+          </ng-container>
+    
+      <ng-container matColumnDef="callType">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">نوع المكالمة </th>
+        <td mat-cell *matCellDef="let call">{{ call.callType }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">الوصف</th>
+        <td mat-cell *matCellDef="let call">{{ call.description }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="callDate">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">تاريخ المكالمة</th>
+        <td mat-cell *matCellDef="let call">{{ call.callDate }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="enteredBy">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">ادخل بواسطة</th>
+        <td mat-cell *matCellDef="let call">{{ call.enteredBy }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="entryDate">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">تاريخ الادخال</th>
+        <td mat-cell *matCellDef="let call">{{ call.entryDate | date }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="lastModifiedBy">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">عدلت بواسطة</th>
+        <td mat-cell *matCellDef="let call">{{ call.lastModifiedBy }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="lastModifiedDate">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">تاريخ اخر تعديل</th>
+        <td mat-cell *matCellDef="let call">{{ call.lastModifiedDate | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="isCompleted">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">هل اكتملت</th>
+        <td mat-cell *matCellDef="let call">{{ call.isCompleted }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="isIncoming">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">هل وارد</th>
+        <td mat-cell *matCellDef="let call">{{ call.isIncoming }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="customerName">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">العميل</th>
+        <td mat-cell *matCellDef="let call">{{ call.customerName }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">الموظف</th>
+        <td mat-cell *matCellDef="let call">{{ call.employeeName }}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="projectName">
+        <th mat-header-cell *matHeaderCellDef class="blue-header">المشروع</th>
+        <td mat-cell *matCellDef="let call">{{ call.projectName }}</td>
+      </ng-container>
+    
+      
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let call">
+          <button mat-icon-button color="primary" (click)="openDialog(call.callId)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteCall(call.callId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+  
+    <button mat-button routerLink="/" color="primary" class="red-header" style="margin-left: 5px; margin-top: 10px;">
+      الرجوع الي الخلف
+    </button> 
+  
+    </div>
+  

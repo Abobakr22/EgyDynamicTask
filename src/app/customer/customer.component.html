@@ -1,0 +1,133 @@
+<div class="container">
+  <h3>العملاء</h3>
+  <div>
+    <button mat-button color="primary" (click)="openDialog()" class="blue-header" style="margin-left: 5px;">اضافة عميل
+      جديد</button>
+    <button mat-button color="accent" (click)="reloadTable()" class="blue-header" style="margin-left: 5px;">تحديث
+      الجدول</button>
+    <!-- <button mat-button color="accent" (click)="toggleColumnsDialog()" style="margin-left: 5px;">إظهار/إخفاء الأعمدة</button> -->
+    <button mat-button color="accent" (click)="downloadCSV()" class="blue-header" style="margin-left: 5px;">تنزيل
+      الجدول</button>
+    <input matInput (keyup)="applyFilter($event)" placeholder="ابحث في الجدول" style="margin-left: 5px;">
+  </div>
+
+  <table mat-table [dataSource]="customers" class="mat-elevation-z8 table table-bordered border-primary">
+
+    <ng-container matColumnDef="customerId">
+      <th mat-header-cell *matHeaderCellDef class="blue-header"> رقم </th>
+      <td mat-cell *matCellDef="let customer; let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef class="blue-header"> اسم العميل </th>
+      <td mat-cell *matCellDef="let customer"> {{customer.customerName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="residence">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">محل الميلاد </th>
+      <td mat-cell *matCellDef="let customer">{{ customer.residence }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">الوصف</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="job">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">الوظيفة</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.job }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="enteredBy">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">ادخل بواسطة</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.enteredBy }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="enteredDate">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">تاريخ الادخال</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.enteredDate | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastModifiedBy">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">عدلت بواسطة</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.lastModifiedBy }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastModifiedDate">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">تاريخ اخر تعديل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.lastModifiedDate | date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerSource">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">مصدر العميل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.customerSource }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerClassification">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">تصنيف العميل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.customerClassification }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerAddress">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">عنوان العميل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.customerAddress }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstPhone">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">الهاتف الأول</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.firstPhone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="secondaryPhone">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">الهاتف الثاني</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.secondaryPhone }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="whatsApp">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">واتساب</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.whatsApp }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">ايميل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="customerCode">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">كود العميل</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.customerCode }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nationality">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">الجنسية</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.nationality }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="salesManName">
+      <th mat-header-cell *matHeaderCellDef class="blue-header">موظف المبيعات</th>
+      <td mat-cell *matCellDef="let customer">{{ customer.salesManName }}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let customer">
+        <button mat-icon-button color="primary" (click)="openDialog(customer.customerId)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteCustomer(customer.customerId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <button mat-button routerLink="/" color="primary" class="red-header" style="margin-left: 5px; margin-top: 10px;">
+    الرجوع الي الخلف
+  </button>
+
+</div>

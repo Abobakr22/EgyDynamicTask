@@ -1,0 +1,75 @@
+<h2 style="text-align: center;">{{ isEditMode ? 'تعديل المكالمة' : 'إضافة مكالمة جديدة' }}</h2>
+
+<form [formGroup]="callForm" (ngSubmit)="saveCall()" class="dialog-form">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="callTitle">عنوان المكالمة</label>
+            <input type="text" id="callTitle" formControlName="callTitle" required>
+        </div>
+        <div class="form-group">
+            <label for="callType">نوع المكالمة</label>
+            <input type="text" id="callType" formControlName="callType">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="description">الوصف</label>
+            <textarea id="description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="enteredBy">المدخل</label>
+            <input type="text" id="enteredBy" formControlName="enteredBy">
+        </div>
+        <div class="form-group">
+            <label for="lastModifiedBy">آخر تعديل بواسطة</label>
+            <input type="text" id="lastModifiedBy" formControlName="lastModifiedBy">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="projectId"> رقم المشروع</label>
+            <input type="number" id="projectId" formControlName="projectId">
+        </div>
+        <div class="form-group">
+            <label for="customerId"> رقم العميل</label>
+            <input type="number" id="customerId" formControlName="customerId">
+        </div>
+        <div class="form-group">
+            <label for="employeeId"> رقم الموظف</label>
+            <input type="number" id="employeeId" formControlName="employeeId">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="entryDate">تاريخ الإدخال</label>
+            <input type="date" id="entryDate" formControlName="entryDate">
+        </div>
+        <div class="form-group">
+            <label for="lastModifiedDate">تاريخ آخر تعديل</label>
+            <input type="date" id="lastModifiedDate" formControlName="lastModifiedDate">
+        </div>
+        <div class="form-group">
+            <label for="callDate">تاريخ المكالمة</label>
+            <input type="datetime-local" id="callDate" formControlName="callDate">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="isIncoming">واردة</label>
+            <input type="checkbox" id="isIncoming" formControlName="isIncoming">
+        </div>
+        <div class="form-group">
+            <label for="isCompleted">مكتملة</label>
+            <input type="checkbox" id="isCompleted" formControlName="isCompleted">
+        </div>
+    </div>
+
+
+    <button type="submit" [disabled]="!callForm.valid">{{ isEditMode ? 'تحديث المكالمة' : 'إنشاء مكالمة' }}</button>
+    <button type="button" (click)="onCancel()">إلغاء</button>
+
+</form>
